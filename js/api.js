@@ -20,10 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         `;
 
-        // Use a CORS proxy to fetch news data
-        const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+        // Use a reliable CORS proxy
+        const proxyUrl = "https://api.allorigins.win/raw?url=";
         const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=${apiKey}`;
-        const fullUrl = proxyUrl + apiUrl;
+        const fullUrl = proxyUrl + encodeURIComponent(apiUrl);
 
         fetch(fullUrl)
             .then(response => {
