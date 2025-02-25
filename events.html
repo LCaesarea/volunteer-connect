@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer Connect - Events</title>
+  <!-- Local Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Volunteer Connect</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="opportunities.html">Volunteer Now</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="events.html">Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            More
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="privacy.html">Privacy Policy</a></li>
+            <li><a class="dropdown-item" href="terms.html">Terms of Service</a></li>
+            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+            <li><a class="dropdown-item" href="login.html">Login</a></li>
+          </ul>
+        </li>
+        <!-- Add the "Donate" link here -->
+        <li class="nav-item">
+          <a class="nav-link" href="donate.html">Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Events Page Content -->
+<div class="container mt-5">
+  <h1>Upcoming Events</h1>
+  <div class="btn-group mb-3">
+    <button class="btn btn-secondary" onclick="filterEvents('all')">All</button>
+    <button class="btn btn-secondary" onclick="filterEvents('fundraisers')">Fundraisers</button>
+    <button class="btn btn-secondary" onclick="filterEvents('workshops')">Workshops</button>
+  </div>
+  <div id="events-container">
+    <!-- Events will be dynamically inserted here by JavaScript -->
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer mt-auto py-3 bg-light">
+  <div class="container">
+            <span class="text-muted">
+                <a href="privacy.html">Privacy Policy</a> |
+                <a href="terms.html">Terms of Service</a>
+            </span>
+  </div>
+</footer>
+
+<!-- Local Bootstrap JS and Popper.js -->
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="js/main.js"></script>
+
+<script>
+  // JavaScript to dynamically generate events
+  const events = [
+    {
+      title: "Fundraiser Gala",
+      date: "2023-12-01",
+      category: "fundraisers"
+    },
+    {
+      title: "Workshop: Community Building",
+      date: "2023-12-10",
+      category: "workshops"
+    }
+  ];
+
+  const eventsContainer = document.getElementById("events-container");
+
+  function displayEvents(category) {
+    eventsContainer.innerHTML = "";
+    events.forEach(event => {
+      if (category === "all" || event.category === category) {
+        const eventCard = `
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">${event.title}</h5>
+                                <p class="card-text"><small class="text-muted">${event.date}</small></p>
+                            </div>
+                        </div>
+                    `;
+        eventsContainer.innerHTML += eventCard;
+      }
+    });
+  }
+
+  // Initial display of all events
+  displayEvents("all");
+
+  // Filter events by category
+  window.filterEvents = function (category) {
+    displayEvents(category);
+  };
+</script>
+</body>
+</html>
