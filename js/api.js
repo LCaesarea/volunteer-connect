@@ -20,12 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         `;
 
-        // Use a reliable CORS proxy
-        const proxyUrl = "https://api.allorigins.win/raw?url=";
-        const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=${apiKey}`;
-        const fullUrl = proxyUrl + encodeURIComponent(apiUrl);
-
-        fetch(fullUrl)
+        // Fetch news data from the News API
+        fetch(`https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=${apiKey}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
