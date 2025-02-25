@@ -20,8 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         `;
 
-        // Fetch news data from the News API
-        fetch(`https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=${apiKey}`)
+        // Use a CORS proxy to fetch news data
+        const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+        const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=${apiKey}`;
+        const fullUrl = proxyUrl + apiUrl;
+
+        fetch(fullUrl)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
