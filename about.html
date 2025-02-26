@@ -18,7 +18,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" href="index.html">Home</a>
         </li>
@@ -42,14 +42,21 @@
             <li><a class="dropdown-item" href="privacy.html">Privacy Policy</a></li>
             <li><a class="dropdown-item" href="terms.html">Terms of Service</a></li>
             <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
-            <li><a class="dropdown-item" href="login.html">Login</a></li>
           </ul>
         </li>
-        <!-- Add the "Donate" link here -->
         <li class="nav-item">
           <a class="nav-link" href="donate.html">Donate</a>
         </li>
+        <!-- Log In / Log Out Link -->
+        <li class="nav-item">
+          <a class="nav-link" id="login-logout-link" href="login.html">Log In</a>
+        </li>
       </ul>
+      <!-- Search Bar -->
+      <form class="d-flex" id="searchForm">
+        <input class="form-control me-2" type="search" id="searchInput" placeholder="Search events, news..." aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
   </div>
 </nav>
@@ -58,6 +65,11 @@
 <div class="container mt-5">
   <h1>About Us</h1>
   <p>Volunteer Connect is a platform dedicated to connecting individuals with volunteering opportunities in their community. Our mission is to foster collaboration, engagement, and service.</p>
+</div>
+
+<!-- Search Results Container -->
+<div class="container mt-4" id="searchResults">
+  <!-- Search results will be dynamically inserted here -->
 </div>
 
 <!-- Footer -->
