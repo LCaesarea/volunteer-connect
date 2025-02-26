@@ -1,7 +1,7 @@
 /*
-Name: [Your Name]
-Student ID: [Your ID]
-Date: [Completion Date]
+Name: [Ackeem Thomas]
+Student ID: [100807236]
+Date: [25/02/2025]
 */
 
 // Highlight Active Page in Navbar
@@ -21,6 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Initialize dark mode based on user preference
     initializeDarkMode();
+
+    // Initialize search functionality
+    initializeSearch();
 });
 
 // Back to Top Button
@@ -256,5 +259,52 @@ function initializeDarkMode() {
         darkModeToggle.textContent = "☀️"; // Sun emoji for light mode
     } else {
         darkModeToggle.textContent = "🌙"; // Moon emoji for dark mode
+    }
+}
+
+// Search Functionality
+function initializeSearch() {
+    const searchForm = document.getElementById("searchForm");
+    if (searchForm) {
+        searchForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+            const searchQuery = document.getElementById("searchInput").value.toLowerCase();
+            const searchResultsContainer = document.getElementById("searchResults");
+
+            // Clear previous results
+            searchResultsContainer.innerHTML = "";
+
+            // Fetch data to search (e.g., events, news, etc.)
+            const dataToSearch = [
+                // Example data (replace with your actual data)
+                { type: "event", title: "Community Cleanup", description: "Help clean up local parks.", date: "2023-11-15" },
+                { type: "event", title: "Food Drive", description: "Collect and distribute food to those in need.", date: "2023-11-20" },
+                { type: "news", title: "Local Park Renovation", description: "The city plans to renovate the central park.", date: "2023-11-10" },
+            ];
+
+            // Filter data based on search query
+            const filteredResults = dataToSearch.filter(item =>
+                item.title.toLowerCase().includes(searchQuery) ||
+                item.description.toLowerCase().includes(searchQuery)
+            );
+
+            // Display search results
+            if (filteredResults.length > 0) {
+                filteredResults.forEach(result => {
+                    const resultCard = `
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">${result.title}</h5>
+                                <p class="card-text">${result.description}</p>
+                                <p class="card-text"><small class="text-muted">${result.date}</small></p>
+                            </div>
+                        </div>
+                    `;
+                    searchResultsContainer.innerHTML += resultCard;
+                });
+            } else {
+                searchResultsContainer.innerHTML = `<div class="alert alert-warning">No results found for "${searchQuery}".</div>`;
+            }
+        });
     }
 }
